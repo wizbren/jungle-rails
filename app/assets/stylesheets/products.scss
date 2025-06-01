@@ -30,6 +30,18 @@ main section.categories-show {
         border-radius: 0.25rem;
       }
 
+      .sold-out-badge {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        background-color: red;
+        color: white;
+        padding: 0.5rem 0.75rem;
+        font-size: 1rem;
+        font-weight: bold;
+        border-radius: 0.25rem;
+      }
+
       a {
         text-decoration: none;
       }
