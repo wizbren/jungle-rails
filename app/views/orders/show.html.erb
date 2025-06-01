@@ -10,7 +10,10 @@
 
   <%= render @order.line_items %>
 
-  
+  <div class="order-total">
+    <h3>Total: <%= humanized_money_with_symbol(@order.total_cents/100.0) %></h3>
+    <p>Order placed by: <%= @order.email %></p>
+  </div>
 
   <%= link_to "Continue Shopping", root_path, class: 'btn btn-lg btn-primary' %>
 
