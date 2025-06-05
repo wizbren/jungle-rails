@@ -12,10 +12,16 @@ RSpec.describe Product, type: :model do
 
     it 'is not valid without a name' do
       category = Category.new(name: "Shrubs")
-      product = Product.new(name: nil, price: 20, quantity: 5, category: category
-      )
+      product = Product.new(name: nil, price: 20, quantity: 5, category: category)
       product.validate
       expect(product.errors.full_messages).to include("Name can't be blank")
     end  
+
+    it 'is not valid without a price' do
+      category = Category.new(name: "Shrubs")
+      product = Product.new(name: "Lilac", price_cents: nil, quantity: 5, category: category)
+      product.validate
+      expect(product.errors.full_messages).to include("Price can't be blank") 
+    end   
   end
 end
