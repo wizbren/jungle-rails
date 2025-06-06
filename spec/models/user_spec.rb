@@ -13,7 +13,7 @@ RSpec.describe User, type: :model do
     it 'is not valid if password and confirmation do not match' do
       user = User.new(first_name: 'Jane', last_name: 'Doe', email: 'jane@example.com', password: 'password', password_confirmation: 'notpassword')
       user.validate
-      expect(user.errors.full_messages).to include("Password confirmation doesn't match password")
+      expect(user.errors.full_messages).to include("Password confirmation doesn't match Password")
     end
 
     it 'is not valid without a password' do
@@ -38,6 +38,13 @@ RSpec.describe User, type: :model do
       user = User.new(first_name: 'Jane', last_name: nil, email: 'jane@example.com', password: 'password', password_confirmation: 'password')
       user.validate
       expect(user.errors.full_messages).to include("Last name can't be blank")
+    end
+
+    it 'is not valid if email is not unique (isnt case sensitive)' do
+      User.create!(first_name: 'Jane', last_name: 'Doe', email: 'test@test.com', password: 'password', password_confirmation: 'password')
+      user = User.new(first_name: 'John', last_name: 'Smith', email: 'TEST@TEST.COM', password: 'password123', password_confirmation: 'password123')
+      user.validate
+      expect(user.errors.full_messages).to include("Email has already been taken")
     end
   end
 
