@@ -21,6 +21,12 @@ RSpec.describe User, type: :model do
       user.validate
       expect(user.errors.full_messages).to include("Password can't be blank")
     end
+
+    it 'is not valid without an email' do
+      user = User.new(first_name: 'Jane', last_name: 'Doe', email: nil, password: 'password', password_confirmation: 'password')
+      user.validate
+      expect(user.errors.full_messages).to include("Email can't be blank")
+    end
   end
 
   describe '.authenticate_with_credentials' do
