@@ -61,7 +61,6 @@ RSpec.describe User, type: :model do
       result = User.authenticate_with_credentials('login@test.com', 'password123')
       expect(result).to eq(user)
     end
-  end
 
     it 'authenticates user even if email has leading/trailing spaces' do
       user = User.create!(first_name: 'Jane', last_name: 'Doe', email: 'spaces@test.com', password: 'password123', password_confirmation: 'password123')
