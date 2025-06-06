@@ -46,6 +46,12 @@ RSpec.describe User, type: :model do
       user.validate
       expect(user.errors.full_messages).to include("Email has already been taken")
     end
+
+    it 'is not valid if password is shorter than 6 characters' do
+      user = User.new(first_name: 'Jane', last_name: 'Doe', email: 'short@pass.com', password: '123', password_confirmation: '123')
+      user.validate
+      expect(user.errors.full_messages).to include("Password is too short (minimum is 6 characters)")
+    end
   end
 
   describe '.authenticate_with_credentials' do
