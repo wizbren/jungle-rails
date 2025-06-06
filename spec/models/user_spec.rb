@@ -55,6 +55,10 @@ RSpec.describe User, type: :model do
   end
 
   describe '.authenticate_with_credentials' do
-
+    it 'returns the user if credentials are correct' do
+      user = User.create!(first_name: 'Jane', last_name: 'Doe', email: 'login@test.com', password: 'password123', password_confirmation: 'password123')
+      result = User.authenticate_with_credentials('login@test.com', 'password123')
+      expect(result).to eq(user)
+    end
   end
 end
