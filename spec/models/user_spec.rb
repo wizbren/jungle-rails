@@ -67,5 +67,11 @@ RSpec.describe User, type: :model do
       result = User.authenticate_with_credentials('  spaces@test.com  ', 'password123')
       expect(result).to eq(user)
     end
+
+    it 'authenticates user even if email case is incorrect' do
+      user = User.create!(first_name: 'Jane', last_name: 'Doe', email: 'case@test.com', password: 'password123', password_confirmation: 'password123')
+      result = User.authenticate_with_credentials('CASE@TEST.COM', 'password123')
+      expect(result).to eq(user)
+    end
   end
 end
