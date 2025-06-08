@@ -4,14 +4,17 @@ A mini e-commerce application built with Rails 6.1 for purposes of teaching Rail
 
 ## Setup
 
-1. Run `bundle install` to install dependencies
-2. Create `config/database.yml` by copying `config/database.example.yml`
-3. Create `config/secrets.yml` by copying `config/secrets.example.yml`
-4. Run `bin/rails db:reset` to create, load and seed db
-5. Create .env file based on .env.example
-6. Sign up for a Stripe account
-7. Put Stripe (test) keys into appropriate .env vars
-8. Run `bin/rails s -b 0.0.0.0` to start the server
+1. git clone https://github.com/wizbren/jungle-rails.git
+2. cd jungle-rails && bundle install
+3. Copy config files:
+    - cp config/database.example.yml config/database.yml
+    - cp config/secrets.example.yml config/secrets.yml
+4. cp .env.example .env
+5. Start PostgreSQL and run:
+    - bin/rails db:reset
+6. Start the server:
+    - bin/rails server -b 0.0.0.0
+7. Visit http://localhost:3000
 
 ## Database
 
